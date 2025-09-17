@@ -1,0 +1,498 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+/* Modern Dashboard Styles */
+
+.dashboard-container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 2rem;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2d3748;
+    width: 100%;
+    /* background: #3a8eed; */
+}
+
+
+/* Welcome Banner */
+
+.welcome-banner {
+    /* background: linear-gradient(135deg, #46d5e5 0%, #3a8eed 100%); */
+    /* background: #0b4e4b; */
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    color: rgb(186, 50, 50);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+.bg-bal {
+    background: #0b4e4b;
+    color: white;
+    border-radius: 15%;
+}
+
+.bg-wdrw {
+    background: #4e3d0b;
+    color: white;
+    border-radius: 15%;
+}
+
+.bg-sav {
+    background: #1c5819;
+    color: white;
+    border-radius: 15%;
+}
+
+.bg-red {
+    background-color: rgb(160, 72, 72);
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.avatar {
+    width: 120px;
+    height: 60px;
+    border-radius: 50%;
+    /* background-color: #b24646; */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.profile-meta {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.church-badge {
+    background-color: rgba(159, 41, 41, 0.807);
+}
+
+.member-badge {
+    background-color: rgba(159, 41, 41, 0.916);
+}
+
+
+/* Summary Cards */
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    /* background-color: #e2edee; */
+}
+
+.summary-card {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    height: 230px;
+    border-bottom: 2px solid rgb(185, 67, 67);
+    border-right: 2px solid rgb(185, 67, 67);
+}
+
+.summary-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.savings-card .card-icon {
+    background-color: #10b981;
+}
+
+.loan-card .card-icon {
+    background-color: #3b82f6;
+}
+
+.repayment-card .card-icon {
+    background-color: #f59e0b;
+}
+
+.card-label {
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0.25rem 0;
+}
+
+.card-trend {
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+}
+
+.positive {
+    color: #10b981;
+}
+
+.negative {
+    color: #ef4444;
+}
+
+
+/* Action Buttons */
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.deposit-btn {
+    background-color: #10b981;
+    color: white;
+}
+
+.loan-btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.transfer-btn {
+    background-color: white;
+    color: #2d3748;
+    border: 1px solid #e2e8f0;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+
+/* Transactions Section */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.view-all {
+    color: #4f46e5;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.transaction-list {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.transaction-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    gap: 1.5rem;
+}
+
+.transaction-item:last-child {
+    border-bottom: none;
+}
+
+.transaction-icon {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-left: -33px;
+    margin-top: -100px;
+}
+
+.transaction-item.positive .transaction-icon2 {
+    background-color: #10b981fb;
+    color: #10b981;
+}
+
+.transaction-item.positive .transaction-icon {
+    background-color: white;
+    border: 5px double #10b981fb;
+}
+
+.transaction-item.negative .transaction-icon2 {
+    background-color: #ef4444;
+    color: #ef4444;
+}
+
+.transaction-item.negative .transaction-icon {
+    background-color: white;
+    border: 5px double #ef4444;
+}
+
+.transaction-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.transaction-meta {
+    color: #64748b;
+    font-size: 0.8rem;
+}
+
+.transaction-amount {
+    text-align: right;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.transaction-amount p:first-child {
+    font-weight: 600;
+}
+
+.transaction-date {
+    color: #94a3b8;
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+}
+
+.transaction-item.positive {
+    border-left: 1px solid #53bd70;
+}
+
+.transaction-item.negative {
+    border-left: 1px solid #cb2e07;
+}
+
+
+/* .loan-date {
+    text-align: left;
+    background-color: #53bd70;
+} */
+
+.trans-card p {
+    /* background-color: yellow; */
+    width: 40px;
+    height: 40px;
+    padding: 3px;
+    text-align: center;
+    align-content: center;
+    border-radius: 100%;
+    border: 2px solid #158e66;
+    color: #2d3748;
+    font-weight: 500;
+}
+
+.trans-card a {
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    padding: 10px;
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.trans-toggle h6 {
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    background-color: #b4ebd8;
+    border-radius: 15px;
+    margin-left: -5px;
+    margin-top: 5px;
+    cursor: pointer;
+}
+
+.outstanding-bal {
+    text-align: center;
+    align-content: center;
+    height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-decoration: none;
+    font-size: 0.75rem;
+    background-color: #b4ebd8;
+    border-radius: 15px;
+    margin-left: 10px;
+    margin-top: 5px
+}
+
+.loan-tag-date {
+    margin-bottom: -15px;
+}
+
+.t-card {
+    border-left: 1px solid #e37444;
+    border-bottom: 1px solid #228783;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.savings-transactions {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    /* height: 500px; */
+    overflow-y: scroll;
+    min-height: 100%;
+}
+
+
+/* styling t-container and scroll bar  */
+
+.t-container {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    height: 400px;
+    overflow-y: auto;
+    padding: 15px;
+    /* Scrollbar Styling */
+    scrollbar-width: thin;
+    /* For Firefox */
+    scrollbar-color: #b0b8bc #f3f4f6;
+    /* For Firefox */
+}
+
+
+/* For Chrome, Edge, and Safari */
+
+.t-container::-webkit-scrollbar {
+    width: 6px;
+    /* Decreased width */
+    height: 6px;
+    /* For horizontal scrollbars */
+}
+
+.t-container::-webkit-scrollbar-track {
+    background: #f3f4f6;
+    /* Light gray track */
+    border-radius: 3px;
+}
+
+.t-container::-webkit-scrollbar-thumb {
+    background-color: #d1d5db;
+    /* Gray thumb */
+    border-radius: 3px;
+    border: 1px solid #f3f4f6;
+    /* Creates padding effect */
+}
+
+.t-container::-webkit-scrollbar-thumb:hover {
+    background-color: #9ca3af;
+    /* Darker gray on hover */
+}
+
+.request-withdrawal {
+    position: relative;
+    top: -30px;
+    left: 150px;
+    text-align: end;
+}
+
+
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        text-align: center;
+    }
+    .profile-meta {
+        justify-content: center;
+    }
+    .action-btn {
+        min-width: 100%;
+    }
+    .dashboard-container {
+        padding: 0px;
+    }
+    .welcome-banner {
+        margin-top: 40px;
+    }
+    .summary-card {
+        width: 95%;
+        height: 200px;
+    }
+    .request-withdrawal {
+        position: relative;
+        top: -20px;
+        left: 50px;
+        text-align: end;
+    }
+}
+
+.bg-sv-crd {
+    background: #0b4e4b;
+    color: white;
+}
+
+.bg-wtd-crd {
+    background: #4e3d0b;
+    color: white;
+}
+
+.bg-bal-crd {
+    background: #284533;
+    color: white;
+}

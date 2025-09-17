@@ -1,0 +1,65 @@
+<div class="transaction-form-container  shadow" *ngIf="!loading; else loadingTpl">
+
+    <div class="cardd-header fs-5 fw-bold bg-amnt text-light p-3">
+        <div class="bank-logo">
+            <!-- <img src="assets/images/bank-logo.svg" alt="Bank Logo"> -->
+        </div>
+        <p class="fs-3 fw-bold pb-4">Record Transactions</p>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Search Member</mat-label>
+            <input matInput [value]="selectedMemberName" (input)="onMemberInput($event)">
+        </mat-form-field>
+
+        <!-- Add a class for better click handling -->
+        <mat-list *ngIf="filteredMembers.length > 0" class="suggestions">
+            <mat-list-item *ngFor="let m of filteredMembers" (click)="onSelectMember(m)" class="member-item">
+                {{ m.username }}
+            </mat-list-item>
+        </mat-list>
+
+
+
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Transaction Type</mat-label>
+            <mat-select formControlName="transaction_type">
+                <mat-option value="deposit">Deposit</mat-option>
+                <mat-option value="withdrawal">Withdrawal</mat-option>
+                <mat-option value="loan_repayment">Loan Repayment</mat-option>
+                <mat-option value="charges">Charges</mat-option>
+                <mat-option value="interest_earned">Interest Earned</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Amount</mat-label>
+            <input matInput formControlName="amount" type="number">
+        </mat-form-field>
+
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Notes (Optional)</mat-label>
+            <textarea matInput formControlName="notes" rows="3"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" [disabled]="form.invalid">Submit</button>
+    </form>
+</div>
+
+
+<ng-template #loadingTpl>
+    <div class="loading-container">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+        Recording Transaction ...
+    </div>
+</ng-template>

@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.loan-container {
+    /* max-width: 800px; */
+    margin: 0 auto;
+    width: 95%;
+}
+
+.loan-card {
+    border-left: 3px solid #0c5a58;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.03);
+    .card-header {
+        background-color: white;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+}
+
+.bg-amnt {
+    background: #0b4e4b;
+    color: white;
+}
+
+.bg-total {
+    background: #4e3d0b;
+    color: white;
+}
+
+.bg-prgs {
+    background: #284533;
+    color: white;
+}
+
+.crd {
+    height: 200px;
+    margin: auto;
+    position: relative;
+}
+
+.table {
+    th {
+        font-weight: 500;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    td {
+        vertical-align: middle;
+    }
+}
+
+.progress {
+    background-color: #f3f4f6;
+    border-radius: 100px;
+    .progress-bar {
+        border-radius: 100px;
+    }
+}
+
+.no-active-loan-icon {
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    * {
+        font-size: 13px;
+    }
+    .loan-container {
+        width: 95%;
+    }
+}

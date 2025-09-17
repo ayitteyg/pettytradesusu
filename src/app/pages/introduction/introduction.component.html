@@ -1,0 +1,138 @@
+<!-- introduction.component.html -->
+<div class="introduction-container">
+    <div class="header">
+        <h1>Petty Trading SUSU App</h1>
+        <p>Digital Solution for Traditional Savings Groups</p>
+    </div>
+
+    <div class="carousel-container">
+        <div class="carousel" [style.transform]="'translateX(-' + (currentSlide * 100) + '%)'">
+            <!-- Slide 1 -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h2 class="card-title">Project Information</h2>
+                <div class="card-content">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-university"></i></div>
+                        <div class="info-text">
+                            <span>Institution:</span> Open Labs
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-book"></i></div>
+                        <div class="info-text">
+                            <span>Course:</span> Full Stack Development (Final Project)
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-user"></i></div>
+                        <div class="info-text">
+                            <span>Developer:</span> Ayittey O. George
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div class="info-text">
+                            <span>Contact:</span> +233 549053295
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="info-text">
+                            <span>Course Instructor:</span> Mr. Felix Botwe
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h2 class="card-title">Project Overview</h2>
+                <div class="card-content">
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-signature"></i></div>
+                        <div class="info-text">
+                            <span>Project Name:</span> Petty Trading SUSU App
+                        </div>
+                    </div>
+                    <div class="info-item full-width">
+                        <div class="info-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="info-text">
+                            <span>Description:</span> The App is a full-stack web application designed to provide a digital alternative to manual record-keeping for petty trading personnel or groups who engage in some form of susu among themselves, making
+                            it easier for members to access their savings records and other transactional data.
+                        </div>
+                    </div>
+                    <div class="tech-section">
+                        <h3><i class="fas fa-tools"></i> Tech Stack</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Angular + Material UI</span>
+                            <span class="tech-item">Django REST Framework</span>
+                            <span class="tech-item">PostgreSQL (Neon)</span>
+                            <span class="tech-item">Paystack (MoMo payments)</span>
+                            <span class="tech-item">Render (Hosting)</span>
+                            <span class="tech-item">JWT Authentication</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2 class="card-title">App Features</h2>
+                <div class="card-content">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-user-plus"></i> Sign up</li>
+                        <li><i class="fas fa-sign-in-alt"></i> Login</li>
+                        <li><i class="fas fa-tachometer-alt"></i> Member dashboard (savings, withdrawals, current balance)</li>
+                        <li><i class="fas fa-money-bill-wave"></i> Make deposit via MoMo or cash</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> Request withdrawal</li>
+                        <li><i class="fas fa-hand-holding-usd"></i> Request loan (if eligible) and repayment features</li>
+                        <li><i class="fas fa-user-edit"></i> Update profile</li>
+                        <li><i class="fas fa-user-cog"></i> Additional features for account Officer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="card">
+                <div class="card-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h2 class="card-title">Future Updates</h2>
+                <div class="card-content">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-print"></i> Print account statement</li>
+                        <li><i class="fas fa-mobile-alt"></i> Add a mobile app</li>
+                        <li><i class="fas fa-bell"></i> Add Notifications</li>
+                        <li><i class="fas fa-university"></i> Develop the idea into a credit union application</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation arrows -->
+        <button class="carousel-btn prev" (click)="prevSlide()">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+        <button class="carousel-btn next" (click)="nextSlide()">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+
+        <!-- Indicators -->
+        <div class="indicators">
+            <span *ngFor="let slide of [0,1,2,3]; let i = index" [class.active]="i === currentSlide" (click)="goToSlide(i)"></span>
+        </div>
+    </div>
+
+    <button class="start-btn" (click)="navigateToApp()">
+    Get Started <i class="fas fa-arrow-right"></i>
+  </button>
+</div>

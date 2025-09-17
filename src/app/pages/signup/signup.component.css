@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+
+/* signup.component.css */
+
+.banking-signup-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+    padding: 2rem;
+}
+
+.banking-signup-container .bank-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 680px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.banking-signup-container .bank-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.banking-signup-container .bank-card .bank-header {
+    /* background: linear-gradient(to bottom right, rgb(33, 047, 60, 0.89)); */
+    /* background-color: #202523; */
+    background-color: #0b4e4b;
+    color: white;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.banking-signup-container .bank-card .bank-header::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.banking-signup-container .bank-card .bank-header::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    left: -30px;
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.banking-signup-container .bank-card .bank-header .bank-logo {
+    margin-bottom: 1.5rem;
+}
+
+.banking-signup-container .bank-card .bank-header .bank-logo img {
+    height: 48px;
+}
+
+.banking-signup-container .bank-card .bank-header h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+}
+
+.banking-signup-container .bank-card .bank-header p {
+    margin: 0.5rem 0 0;
+    opacity: 0.9;
+    font-size: 0.95rem;
+    position: relative;
+    z-index: 1;
+}
+
+.banking-signup-container .bank-card .bank-form {
+    padding: 2rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2d3748;
+    font-size: 0.9rem;
+}
+
+.input-with-icon1 {
+    justify-content: center;
+    align-items: center;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon i {
+    position: absolute;
+    left: 15px;
+    color: #718096;
+    font-size: 1.1rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon .toggle-password {
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    color: #718096;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon .toggle-password:hover {
+    color: #2a52be;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon input:focus {
+    outline: none;
+    border-color: #2a52be;
+    box-shadow: 0 0 0 3px rgba(42, 82, 190, 0.1);
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon input.is-invalid {
+    border-color: #f44336;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .input-with-icon input.is-invalid:focus {
+    box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.1);
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .invalid-feedback {
+    color: #f44336;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength {
+    margin-top: 0.5rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-bar {
+    height: 4px;
+    border-radius: 2px;
+    background: #e0e0e0;
+    margin-bottom: 0.3rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-bar::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: #f44336;
+    transition: width 0.3s ease, background 0.3s ease;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-bar.weak::after {
+    width: 30%;
+    background: #f44336;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-bar.medium::after {
+    width: 60%;
+    background: #ff9800;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-bar.strong::after {
+    width: 100%;
+    background: #4caf50;
+}
+
+.banking-signup-container .bank-card .bank-form .form-group .password-strength .strength-text {
+    font-size: 0.75rem;
+    color: #718096;
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions {
+    margin-top: 2rem;
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions .btn-primary {
+    width: 100%;
+    padding: 14px;
+    background: #2a52be;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    position: relative;
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions .btn-primary:hover {
+    background: #1e3a8a;
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions .btn-primary:active {
+    transform: scale(0.98);
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions .btn-primary:disabled {
+    background: #7a9cf0;
+    cursor: not-allowed;
+}
+
+.banking-signup-container .bank-card .bank-form .form-actions .btn-primary .spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s ease-in-out infinite;
+}
+
+.banking-signup-container .bank-card .bank-form .form-footer {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #718096;
+}
+
+.banking-signup-container .bank-card .bank-form .form-footer a {
+    color: #2a52be;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.banking-signup-container .bank-card .bank-form .form-footer a:hover {
+    text-decoration: underline;
+}
+
+.banking-signup-container .bank-card .bank-form .form-footer .security-info {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: #718096;
+}
+
+.banking-signup-container .bank-card .bank-form .form-footer .security-info i {
+    font-size: 1rem;
+    color: #4caf50;
+}
+
+.mybtn {
+    background: linear-gradient(to bottom right, rgb(33, 047, 60, 0.89)) !important;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

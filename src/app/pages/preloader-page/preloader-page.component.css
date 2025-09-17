@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 15px;
+}
+
+.page-container {
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    border-radius: 16px;
+    /* box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); */
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 30px;
+    text-align: center;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+p {
+    color: #34495e;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+.membership-number {
+    font-weight: bold;
+    color: #3498db;
+    font-size: 1.2em;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+}
+
+.btnn:hover {
+    transform: scale(1.05);
+}
+
+.welcome-icon {
+    font-size: 3rem;
+    color: #3498db;
+    margin-bottom: 20px;
+}
+
+.credit-union {
+    color: #3498db;
+    font-weight: 700;
+}
+
+.btns {
+    margin-top: -80px;
+}

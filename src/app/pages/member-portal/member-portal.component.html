@@ -1,0 +1,122 @@
+<!-- <nav class="navbar navbar-expand-lg fixed-top nav-bg-color"></nav> -->
+
+<div class="main-content-container">
+
+    <!-- Sidebar -->
+    <div class="">
+        <div class="sidebar">
+            <div #sidebar [ngClass]="{ 'sidebar-expanded': !isCollapsed, 'sidebar-collapsed': isCollapsed }" class="sidebar"> <br><br><br>
+
+                <!-- Toggle Button -->
+                <button class="toggle-btn" (click)="toggleSidebar()">
+                    <i class="bi" [ngClass]="isCollapsed ? 'bi-arrow-right-circle' : 'bi-arrow-left-circle'"></i>
+                </button>
+
+                <!-- Sidebar Menu -->
+                <ul class="list-group">
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('dashboard')" routerLinkActive="active" aria-label="Member dashboard">
+                            <i class="bi bi-graph-up text-light"></i>
+                            <span *ngIf="!isCollapsed">My Dashboard</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('loans')" routerLinkActive="active" aria-label="loans">
+                            <i class="bi bi-calendar-check text-light"></i>
+                            <span *ngIf="!isCollapsed">My Loans</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('momo-deposit')" routerLinkActive="active" aria-label="Momo Deposit">
+                            <i class="bi bi-phone text-light"></i>
+                            <span *ngIf="!isCollapsed">Momo Deposit</span>
+                        </a>
+                    </li>
+
+
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('add-transaction')" routerLinkActive="active" aria-label="Add Transaction">
+                            <i class="bi bi-plus-circle text-light"></i>
+                            <span *ngIf="!isCollapsed">Transactions</span>
+                        </a>
+                    </li>
+
+
+                    <!-- <li class="list-group-item">
+                        <a class="nav-link" routerLink="" routerLinkActive="active">
+                            <i class="bi bi-arrow-down-circle text-light"></i>
+                            <span *ngIf="!isCollapsed">Statement</span>
+                        </a>
+                    </li> -->
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('withdraw')" routerLinkActive="active" aria-label="withdraw">
+                            <i class="bi bi-arrow-left-right  text-light"></i>
+                            <span *ngIf="!isCollapsed">withdrawal</span>
+                        </a>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('loan-request')" routerLinkActive="active" aria-label="loan-request">
+                            <i class="bi bi-hourglass-split text-light"></i>
+                            <span *ngIf="!isCollapsed">Request Loans</span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="setActivePage('profile')" routerLinkActive="active" aria-label="profile">
+                            <i class="bi bi-person-circle text-light"></i>
+                            <span *ngIf="!isCollapsed">Profile</span>
+                        </a>
+                    </li>
+
+
+                    <li class="list-group-item">
+                        <a class="nav-link" (click)="logout()">
+                            <i class="bi bi-box-arrow-right text-light"></i>
+                            <span *ngIf="!isCollapsed" class="mx-1">Logout</span>
+                        </a>
+                    </li>
+
+
+
+
+
+
+                </ul>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <div [ngSwitch]="activePage">
+            <app-mem-dashboard *ngSwitchCase="'dashboard'"></app-mem-dashboard>
+            <app-add-transaction *ngSwitchCase="'add-transaction'"></app-add-transaction>
+            <app-momo-deposit *ngSwitchCase="'momo-deposit'"></app-momo-deposit>
+            <app-loans *ngSwitchCase="'loans'"></app-loans>
+            <app-withdraw *ngSwitchCase="'withdraw'"></app-withdraw>
+            <app-member-profile *ngSwitchCase="'profile'"></app-member-profile>
+            <app-loan-request *ngSwitchCase="'loan-request'"></app-loan-request>
+
+
+        </div>
+
+    </div>
+</div>

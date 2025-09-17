@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    /* font-family: "Bebas Neue", serif; */
+    font-size: 15px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.navbar {
+    height: 40px;
+}
+
+.nav-bg-color {
+    /* background: linear-gradient(90deg, #8b7708 10%, #FF8C00 30%, darkgoldenrod 80%); */
+    background: linear-gradient(to bottom right, rgba(19, 36, 42, 0.89));
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.644);
+    /* Subtle shadow */
+    color: white;
+    /* Text color */
+    transition: background 0.3s ease;
+}
+
+.main-content-container {
+    display: flex;
+    /* Make children align horizontally */
+    min-height: 100vh;
+    /* Full page height */
+}
+
+.content {
+    /* flex-grow: 1; */
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    width: 90%;
+    /* background-color: blue; */
+    height: 100%;
+    padding: 20px;
+    margin-left: 100px;
+}
+
+.t {
+    background-color: yellow;
+}
+
+.sidebar {
+    height: 100%;
+    background: #0b4e4b;
+    /* background-color: #212f3c; */
+    /* background-color: #0d0e0d; */
+    /* background: rgb(186, 50, 50); */
+    color: white;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    /* Prevents text wrapping */
+    z-index: 1000;
+}
+
+.sidebar-expanded {
+    width: 220px;
+    transition: width 0.8s;
+}
+
+.sidebar-collapsed {
+    width: 70px;
+    transition: width 0.8s;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #b8860b;
+    color: blue;
+    margin-top: -40px;
+}
+
+.list-group-item {
+    border: none;
+    background: none;
+}
+
+.list-group-item a {
+    display: flex;
+    align-items: center;
+    padding: 4px;
+    color: white;
+    text-decoration: none;
+}
+
+.list-group-item a:hover {
+    background-color: #495057;
+    border-radius: 5px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.list-group-item i {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .sidebar-collapsed {
+        width: 47px;
+        transition: width 0.8s;
+    }
+    .toggle-btn {
+        background-color: darkgoldenrod;
+        color: blue;
+    }
+    .sidebar-expanded {
+        width: 150px;
+        transition: width 0.8s;
+    }
+    .list-group-item a {
+        align-items: left;
+        padding: 5px;
+        margin-left: -12px;
+    }
+    .content {
+        width: 87%;
+        margin-left: 50px;
+    }
+}

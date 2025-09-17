@@ -1,0 +1,11 @@
+services:
+  - type: static
+    name: 
+    repo: 
+    branch: main
+    buildCommand: npm install && npm run build --configuration production
+    publishDir: dist/creditunion/browser
+    redirects:
+      - source: /*
+        destination: /index.html
+        statusCode: 200

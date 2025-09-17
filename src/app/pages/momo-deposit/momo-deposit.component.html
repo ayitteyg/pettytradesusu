@@ -1,0 +1,159 @@
+<div class="momo-deposit-container ptt-5">
+    <div class="card border-0 shadow">
+        <div class="cardd-header bg-hd text-light p-4">
+            <h5 class="mb-0 fs-3 fw-bold">Mobile Money Deposit</h5>
+            <p class="small mb-0">Instant deposits via mobile money (MTN)</p>
+        </div>
+
+        <div class="card-body p-5">
+            <!-- Progress Steps -->
+            <div class="step-progress">
+                <div class="step" [class.active]="currentStep === 1" [class.completed]="currentStep > 1">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Amount</div>
+                </div>
+
+                <div class="step" [class.active]="currentStep === 2" [class.completed]="currentStep > 2" [class.processing]="currentStep === 2 && processingPayment">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Payment</div>
+                </div>
+
+                <div class="step" [class.active]="currentStep === 3" [class.completed]="currentStep === 3 && paymentSuccess" [class.error]="currentStep === 3 && paymentError">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Confirmation</div>
+                </div>
+            </div>
+
+            <form [formGroup]="depositForm" (ngSubmit)="initiatePayment()">
+
+                <div class="row">
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="">
+                            <!-- Amount Input -->
+                            <div class="mt-2 pt-3">
+                                <!-- <label class="form-label">Deposit Amount (GHS)</label> -->
+                                <div class="input-group">
+                                    <span class="input-group-text"> Gh₵ </span>
+                                    <input type="number" class="form-control" formControlName="amount" placeholder="Enter amount">
+                                </div>
+                                <div *ngIf="depositForm.get('amount')?.invalid && depositForm.get('amount')?.touched" class="text-danger small">
+                                    <div *ngIf="depositForm.get('amount')?.errors?.['required']">Amount is required</div>
+                                    <div *ngIf="depositForm.get('amount')?.errors?.['min']">Minimum deposit is GHS 5.00</div>
+                                    <div *ngIf="depositForm.get('amount')?.errors?.['max']">Maximum deposit is GHS 5,000.00</div>
+                                </div>
+                                <div class="d-flex justify-content-between mt-2">
+                                    <!-- <small class="text-muted">Minimum: GHS 5.00</small> -->
+                                    <!-- <small class="text-muted">Maximum: GHS 5,000.00</small> -->
+                                </div>
+                            </div>
+
+                            <!-- Network Selection -->
+                            <!-- <div class="mb-4">
+                            <label class="form-label">Mobile Network</label>
+                            <div class="network-selector">
+                                <div class="row g-2">
+                                    <div class="col-4" *ngFor="let network of networks">
+                                        <input type="radio" [id]="'network-'+network.id" formControlName="network" [value]="network.id" class="d-none">
+                                        <label [for]="'network-'+network.id" class="network-option">
+                                        <img [src]="network.logo" [alt]="network.name" class="network-logo">
+                                        <span>{{ network.name }}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                            <!-- Phone Number -->
+                            <div class="mbb-4">
+                                <!-- <label class="form-label">Mobile Number</label> -->
+                                <div class="input-group">
+                                    <span class="input-group-text">+233</span>
+                                    <input type="tel" class="form-control" formControlName="phoneNumber" placeholder="">
+                                </div>
+                                <div *ngIf="depositForm.get('phoneNumber')?.invalid && depositForm.get('phoneNumber')?.touched" class="text-danger small">
+                                    Valid 9-digit number required (without 0)
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <!-- Summary -->
+                        <div class="summary-cardd p-3 bg-sv-crdd">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted ">Amount:</span>
+                                <span class="fw-bold">GHS {{ depositForm.value.amount || '0.00' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-muted">Fee:</span>
+                                <span class="fw-bold">GHS {{ fee }}</span>
+                            </div>
+                            <hr>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-muted">Total:</span>
+                                <span class="fw-bold text-primary">GHS {{ total }}</span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2 p-2">
+                        <button type="submit" class="btn btn-outline-success p-3" [disabled]="depositForm.invalid || processingPayment">
+                                <span *ngIf="!processingPayment">Proceed to Make Deposit</span>
+                                <span *ngIf="processingPayment" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            </button>
+                        <!-- <button type="button" class="btn btn-outline-danger">
+                                Cancel
+                            </button> -->
+                    </div>
+                    <!-- </div> -->
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- Payment Modal -->
+    <div class="modal fade" [class.show]="showPaymentModal" [style.display]="showPaymentModal ? 'block' : 'none'">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Complete Payment</h5>
+                    <button type="button" class="btn-close" (click)="showPaymentModal = false" aria-label="Close"></button>
+                </div>
+                <!-- Add this to your modal body -->
+                <div class="modal-body text-center">
+                    <div *ngIf="paymentStatus === 'pending'">
+
+                        <div class="spinner-border text-primary mb-3" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p>Processing payment request...</p>
+                        <p class="small text-muted">A payment request has been sent to +233{{ depositForm.value.phoneNumber }}</p>
+                    </div>
+
+                    <div *ngIf="paymentStatus === 'success'" class="text-success">
+                        <i class="bi bi-check-circle-fill display-4 mb-3"></i>
+                        <h5>Processing Successful!</h5>
+                        <p>Your deposit of GHS {{ total }} was received</p>
+                        <p class="small text-muted">Reference: {{ paymentReference }}</p>
+                        <button class="btn btn-success mt-3" (click)="showPaymentModal = false">Done</button>
+                    </div>
+
+                    <div *ngIf="paymentStatus === 'failed'" class="text-danger">
+                        <i class="bi bi-x-circle-fill display-4 mb-3"></i>
+                        <h5>Payment Failed</h5>
+                        <p>Please try again or contact support</p>
+                        <button class="btn btn-outline-danger mt-3" (click)="showPaymentModal = false">Try Again</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

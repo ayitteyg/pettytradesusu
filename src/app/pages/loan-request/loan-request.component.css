@@ -1,0 +1,296 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.navbar {
+    height: 50px;
+}
+
+.nav-bg-color {
+    background: linear-gradient(90deg, #8b7708 10%, #FF8C00 30%, darkgoldenrod 80%);
+    /* background: linear-gradient(to bottom right, rgba(19, 36, 42, 0.89)); */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.644); */
+    /* Subtle shadow */
+    color: white;
+    /* Text color */
+    transition: background 0.3s ease;
+}
+
+.loan-request-container {
+    /* max-width: 1200px; */
+    margin: 0 auto;
+    padding: 20px;
+    width: 70%;
+}
+
+.card {
+    /* border: none; */
+    border: 1px solid rgb(158, 110, 110);
+    border-radius: 10px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    padding: 30px;
+    .card-header {
+        background-color: #f8f9fa;
+        /* border-bottom: 1px solid rgba(0, 0, 0, 0.05); */
+        font-weight: 600;
+    }
+}
+
+.history-card {
+    padding: 100px;
+}
+
+.form-control,
+.form-select {
+    border-radius: 8px;
+    padding: 10px 15px;
+    border: 1px solid #e0e0e0;
+    &:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.1);
+    }
+}
+
+.table {
+    th {
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #6c757d;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-top: none;
+    }
+    td {
+        vertical-align: middle;
+    }
+    tr:hover {
+        background-color: rgba(0, 0, 0, 0.01);
+    }
+}
+
+.badge {
+    padding: 6px 10px;
+    border-radius: 50px;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.btn-primary {
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+
+/* Add these styles to your existing SCSS */
+
+.custom-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.custom-modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+}
+
+.custom-modal-dialog {
+    width: 100%;
+    max-width: 500px;
+    margin: 1.75rem auto;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid rgba(41, 81, 41, 0.807);
+}
+
+.custom-modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: white;
+    background-clip: padding-box;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    border-radius: 15px;
+    border: 1px solid rgba(41, 81, 41, 0.807);
+}
+
+.custom-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    h5 {
+        margin: 0;
+        font-size: 1.25rem;
+    }
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0.5;
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.custom-modal-body {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 1rem;
+}
+
+.loan-details {
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin-top: 1rem;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.75rem;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.detail-value {
+    color: #212529;
+}
+
+.custom-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+    border-top: 1px solid #dee2e6;
+    button {
+        margin-left: 0.5rem;
+    }
+}
+
+.spinner-border {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    vertical-align: text-bottom;
+    border: 0.2em solid currentColor;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner-border 0.75s linear infinite;
+}
+
+@keyframes spinner-border {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .loan-request-container {
+        width: 95%;
+        padding: 5px;
+    }
+    .card {
+        padding: 5px;
+    }
+}
+
+.bg-amnt {
+    background: #0b4e4b;
+    color: white;
+}
+
+
+/* Loan Approval Section */
+
+.loan-approval-section {
+    .filter-control {
+        display: flex;
+        align-items: center;
+        margin: auto;
+        .form-select {
+            width: 200px;
+            display: inline-block;
+            margin: auto;
+        }
+    }
+    .loan-card {
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s;
+        border-left-width: 4px;
+        border-left-style: solid;
+        &:hover {
+            transform: translateY(-2px);
+        }
+        &.status-approved {
+            border-left-color: #28a745;
+        }
+        &.status-pending {
+            border-left-color: #ffc107;
+        }
+        &.status-rejected {
+            border-left-color: #dc3545;
+        }
+        .card-title {
+            font-weight: 600;
+        }
+        .loan-details {
+            .detail-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 8px;
+                font-size: 0.9rem;
+                span {
+                    color: #6c757d;
+                }
+                strong {
+                    color: #212529;
+                    max-width: 60%;
+                    text-align: right;
+                }
+            }
+        }
+        .card-footer {
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+    }
+    .badge {
+        font-size: 0.75rem;
+        padding: 0.35em 0.65em;
+        font-weight: 500;
+    }
+}

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inconsolata:wght@200..900&display=swap');
+* {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 14px;
+}
+
+.card-header {
+    /* background: linear-gradient(to bottom right, rgb(33, 047, 60, 0.89)); */
+    background: #0b4e4b;
+    color: white;
+    padding: 2.0rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.transaction-container {
+    padding: 2rem;
+    background: linear-gradient(to bottom right, rgb(33, 047, 60, 0.89));
+    color: white;
+}
+
+.filter-bar {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.full-width-table {
+    width: 100%;
+    /* border-radius: 12px; */
+    overflow-x: auto;
+}
+
+table {
+    min-width: 600px;
+}
+
+.mat-header-cell,
+.mat-cell {
+    padding: 8px;
+}
+
+.mat-header-row {
+    background-color: #f4f6f9;
+    font-weight: 600;
+}
+
+.bg-amnt {
+    background: #0b4e4b;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .full-width-table {
+        font-size: 0.9rem;
+    }
+    .table-container {
+        width: 300px;
+        overflow-x: scroll;
+        overflow-y: scroll;
+    }
+}

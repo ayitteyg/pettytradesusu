@@ -1,0 +1,111 @@
+<!-- signup.component.html -->
+<div class="banking-signup-container">
+    <div class="bank-card">
+        <div class="bank-header">
+            <div class="bank-logo">
+                <!-- <img src="assets/images/bank-logo.svg" alt="Bank Logo"> -->
+            </div>
+            <h2>Create Your Account</h2>
+            <p class="text-warning">Join our SUSU platform</p>
+        </div>
+
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="bank-form">
+
+
+            <div class="form-group">
+                <label for="first_name">First name</label>
+                <div class="input-with-icon">
+                    <i class="icon-user"></i>
+                    <input type="text" id="first_name" formControlName="first_name" placeholder="Enter your First Name" [ngClass]="{ 'is-invalid': f['first_name'].touched && f['first_name'].errors }">
+                </div>
+                <div *ngIf="f['first_name'].errors" class="invalid-feedback">
+                    <span *ngIf="f['first_name'].errors['required']">First Name is required</span>
+                </div>
+            </div>
+
+
+
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-with-icon">
+                    <i class="icon-user"></i>
+                    <input type="text" id="username" formControlName="username" placeholder="Enter your username" [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }">
+                </div>
+                <div *ngIf="f['username'].errors" class="invalid-feedback">
+                    <span *ngIf="f['username'].errors['required']">Username is required</span>
+                    <span *ngIf="f['username'].errors['minlength']">Minimum 4 characters required</span>
+                    <span *ngIf="f['username'].errors['maxlength']">Maximum 20 characters allowed</span>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <div class="input-with-icon">
+                    <i class="icon-email"></i>
+                    <input type="email" id="email" formControlName="email" placeholder="Enter your email" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }">
+                </div>
+                <div *ngIf="f['email'].errors" class="invalid-feedback">
+                    <span *ngIf="f['email'].errors['required']">Email is required</span>
+                    <span *ngIf="f['email'].errors['email']">Please enter a valid email</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password1">Password</label>
+                <div class="input-with-icon">
+                    <!-- <i class="bi bi-lock"></i> -->
+                    <input [type]="showPassword ? 'text' : 'password'" id="password1" formControlName="password1" placeholder="Create a password" [ngClass]="{ 'is-invalid': f['password1'].touched && f['password1'].errors }">
+                    <i class="bi toggle-password" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password1')" style="cursor: pointer"></i>
+                </div>
+                <div *ngIf="f['password1'].errors" class="invalid-feedback">
+                    <span *ngIf="f['password1'].errors['required']">Password is required</span>
+                    <span *ngIf="f['password1'].errors['minlength']">Minimum 8 characters required</span>
+                    <span *ngIf="f['password1'].errors['strongPassword']">
+            Password must contain uppercase, lowercase, number, and special character
+          </span>
+                </div>
+                <div class="password-strength">
+                    <div class="strength-bar" [ngClass]="getPasswordStrengthClass()"></div>
+                    <span class="strength-text">{{ getPasswordStrengthText() }}</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="password2">Confirm Password</label>
+                <div class="input-with-icon">
+                    <!-- <i class="bi bi-lock"></i> -->
+                    <i class="bi toggle-password" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password2')" style="cursor: pointer"></i>
+                    <input [type]="showConfirmPassword ? 'text' : 'password'" id="password2" formControlName="password2" placeholder="Confirm your password" [ngClass]="{ 'is-invalid': (f['password2'].touched && f['password2'].errors) || signupForm.errors?.['mismatch'] }">
+
+
+                    <!-- <i class="toggle-password" [class.icon-eye]="!showConfirmPassword" [class.icon-eye-off]="showConfirmPassword" (click)="togglePasswordVisibility('password2')"></i> -->
+                </div>
+                <div *ngIf="signupForm.errors?.['mismatch'] && f['password2'].touched" class="invalid-feedback">
+                    Passwords do not match
+                </div>
+            </div>
+
+
+            <div class="d-grid mb-4">
+                <button type="submit" class="btn btn-outline-danger" [disabled]="isLoading">
+                            <span *ngIf="!isLoading">Create Account</span>
+                            <span *ngIf="isLoading">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            creating account...
+                            </span>
+                        </button>
+            </div>
+
+            <div class="form-footer">
+                <p>Already have an account? <a routerLink="/login">Sign In</a></p>
+                <p class="security-info">
+                    <i class="icon-shield"></i> Your information is secured with US.
+                </p>
+            </div>
+
+
+        </form>
+    </div>
+</div>

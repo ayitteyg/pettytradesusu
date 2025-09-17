@@ -1,0 +1,154 @@
+<div class="member-profile-container shadow pt-3">
+    <div class="card profile-card">
+        <div class="cardd-header bg-hd text-light p-3 fs-6">
+            <h4 class="mb-0 fs-3  fw-bold">Member Profile</h4>
+            <p class="small mb-0">Update your personal information</p>
+        </div>
+
+        <div class="card-body">
+            <!-- Loading State -->
+            <div *ngIf="isLoading" class="text-center pyy-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <p class="mt-2">Loading profile data...</p>
+            </div>
+
+            <!-- Error Message -->
+            <div *ngIf="errorMessage" class="alert alert-danger">
+                {{ errorMessage }}
+            </div>
+
+            <!-- Success Message -->
+            <div *ngIf="successMessage" class="alert alert-success">
+                {{ successMessage }}
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <form *ngIf="!isLoading" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <!-- Left Column -->
+                            <div class="col-md-12">
+                                <!-- Profile Picture -->
+                                <!-- <div class="profile-picture-section mb-4 text-center">
+                            <div class="profile-picture-wrapper">
+                                <img [src]="profileImage" alt="Profile Picture" class="profile-picture">
+                                <label class="profile-picture-upload">
+                                <input type="file" (change)="onFileSelected($event)" accept="image/*">
+                                <i class="bi bi-camera-fill"></i>
+                                </label>
+                            </div>
+                            <small class="text-muted">Click image to update</small>
+                        </div> -->
+
+                                <!-- Basic Info -->
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Full Name <span class="text-danger">*</span></label> -->
+                                    <input type="text" class="form-control" formControlName="full_name" placeholder="Full Name">
+                                    <div *ngIf="profileForm.get('full_name')?.invalid && profileForm.get('full_name')?.touched" class="text-danger small">
+                                        Full name is required
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Email</label> -->
+                                    <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                                    <div *ngIf="profileForm.get('email')?.invalid && profileForm.get('email')?.touched" class="text-danger small">
+                                        Please enter a valid email
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Phone Number</label> -->
+                                    <input type="tel" class="form-control" formControlName="phone" placeholder="Phone Number">
+                                    <div *ngIf="profileForm.get('phone')?.invalid && profileForm.get('phone')?.touched" class="text-danger small">
+                                        Please enter a valid phone number (10-15 digits)
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Date of Birth</label> -->
+                                    <input type="date" class="form-control" formControlName="date_of_birth" placeholder="Date of Birth">
+                                </div>
+
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Occupation</label> -->
+                                    <input type="text" class="form-control" formControlName="occupation" placeholder="Occupation">
+                                </div>
+
+
+                                <div class="mb-3">
+                                    <!-- <label class="form-label">Church</label> -->
+                                    <select class="form-select" formControlName="church" placeholder="Church">
+                                <option value="">Select church...</option>
+                                    <option *ngFor="let church of churches" [value]="church.id">
+                                    {{ church.name }}
+                                    </option>
+                             </select>
+                                </div>
+
+
+
+                                <!-- action button -->
+                                <div class="d-flex justify-content-end mt-4">
+                                    <button type="button" class="btn btn-outline-secondary me-2" (click)="cancel()">
+                                Cancel
+                            </button>
+                                    <button type="submit" class="btn btn-primary" [disabled]="profileForm.invalid || isSaving">
+                                <span *ngIf="!isSaving">Save Changes</span>
+                                <span *ngIf="isSaving" class="spinner-border spinner-border-sm"></span>
+                            </button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-6">
+
+                    <form *ngIf="!isLoading" [formGroup]="passwordForm" (ngSubmit)="onPassSubmit()">
+                        <div class="col-md-12 pt-4">
+
+                            <!-- Password Update Section -->
+                            <div class="password-update-section mt-4 p-3 bg-lights rounded">
+                                <h4 class="text-primary">Update Your Password</h4>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Current Password</label>
+                                    <input type="password" class="form-control" formControlName="current_password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">New Password</label>
+                                    <input type="password" class="form-control" formControlName="new_password">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Confirm New Password</label>
+                                    <input type="password" class="form-control" formControlName="confirm_password">
+                                </div>
+                            </div>
+
+
+
+                            <!-- action button -->
+                            <div class="d-flex justify-content-end mt-4">
+                                <button type="button" class="btn btn-outline-secondary me-2" (click)="cancel()">
+                                Cancel
+                            </button>
+                                <button type="submit" class="btn btn-primary" [disabled]="passwordForm.invalid ">
+                                <span *ngIf="!isSavingPass">Save Changes</span>
+                                <span *ngIf="isSavingPass" class="spinner-border spinner-border-sm"></span>
+                            </button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

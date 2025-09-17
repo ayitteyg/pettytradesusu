@@ -1,0 +1,202 @@
+.momo-deposit-container {
+    /* max-width: 500px; */
+    margin: 0 auto;
+    width: 70%;
+}
+
+.header-bg {
+    background: rgba(15, 53, 78, 0.825);
+}
+
+.network-option {
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: block;
+    height: 100%;
+}
+
+.network-option:hover {
+    border-color: rgba(15, 53, 78, 0.825);
+}
+
+.network-option img {
+    height: 30px;
+    width: 40px;
+    margin-bottom: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.network-option span {
+    font-size: 0.8rem;
+    display: block;
+}
+
+input[type="radio"]:checked+.network-option {
+    border-color: rgba(15, 53, 78, 0.825);
+    background-color: #f0f7ff;
+}
+
+.summary-card {
+    /* background-color: #f8f9fa; */
+    border-radius: 8px;
+    border-left: 1px solid rgba(15, 53, 78, 0.825);
+    border-right: 1px solid rgba(15, 53, 78, 0.825);
+}
+
+.bg-hd {
+    background: #0b4e4b;
+    /* color: rgba(183, 53, 53, 0.923); */
+}
+
+.input-group-text {
+    width: 50px;
+}
+
+@media (max-width: 768px) {
+    * {
+        font-size: 13px;
+    }
+    .momo-deposit-container {
+        width: 95%;
+    }
+    .summary-card {
+        width: 100%;
+        margin: 0px;
+    }
+}
+
+
+/* Progress Steps Container */
+
+.step-progress {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+
+/* Step Connector Line */
+
+.step-progress::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #e0e0e0;
+    z-index: 1;
+}
+
+
+/* Individual Step */
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+
+/* Step Circle */
+
+.step-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0.5rem;
+    border: 3px solid #e0e0e0;
+    background: #e0e0e0;
+    transition: all 0.3s ease;
+}
+
+
+/* Step Label */
+
+.step-label {
+    font-size: 0.9rem;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+
+/* Active Step */
+
+.step.active .step-circle {
+    background: #007bff;
+    border-color: #007bff;
+    color: white;
+}
+
+.step.active .step-label {
+    color: #007bff;
+    font-weight: bold;
+}
+
+
+/* Completed Step */
+
+.step.completed .step-circle {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.step.completed .step-label {
+    color: #28a745;
+}
+
+
+/* Error Step */
+
+.step.error .step-circle {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.step.error .step-label {
+    color: #dc3545;
+}
+
+
+/* Processing Step */
+
+.step.processing .step-circle {
+    background: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bg-sv-crd {
+    background: #0b4e4b;
+    background: #4e3d0b;
+    color: white;
+}

@@ -1,0 +1,286 @@
+<br>
+<div class="loan-request-container shadow pt-5">
+    <div class="row">
+        <!-- Form Column -->
+        <div class="col-lg-12">
+            <div class="card shadoww-sm mb-4">
+                <div class="bg-amnt p-4 text-light border-bottom">
+                    <h5 class="mb-0  fw-bold fs-3 text-light">Loan Application</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="loanForm" (ngSubmit)="onSubmit()">
+                        <!-- Member Selection (only for account officers) -->
+                        <div class="mb-3" *ngIf="is_officer">
+                            <!-- <label class="form-label">Select Member</label> -->
+                            <select class="form-select  text-muted" formControlName="member">
+                        <option value="" disabled selected>Choose member</option>
+                        <option *ngFor="let member of members" [value]="member.id">
+                        {{ member.username }} 
+                        </option>
+                      </select>
+                            <div *ngIf="loanForm.get('member')?.invalid && loanForm.get('member')?.touched" class="text-danger small">
+                                Please select a member
+                            </div>
+                        </div>
+
+                        <!-- Amount -->
+                        <div class="mb-3">
+                            <!-- <label class="form-label">Loan Amount (GHS)</label> -->
+                            <div class="input-group">
+                                <input type="number" class="form-control" formControlName="amount" placeholder="Enter amount  (GHS)">
+                            </div>
+                            <div *ngIf="loanForm.get('amount')?.invalid && loanForm.get('amount')?.touched" class="text-danger small">
+                                <div *ngIf="loanForm.get('amount')?.errors?.['required']">Amount is required</div>
+                                <div *ngIf="loanForm.get('amount')?.errors?.['min']">Minimum amount is GHS 100</div>
+                                <div *ngIf="loanForm.get('amount')?.errors?.['max']">Maximum amount is GHS 50,000</div>
+                            </div>
+                        </div>
+
+                        <!-- Term and Interest Rate -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <!-- <label class="form-label">Term (months)</label> -->
+                                <input type="number" class="form-control" formControlName="term" placeholder="Term (months) e.g. 12">
+                                <div *ngIf="loanForm.get('term')?.invalid && loanForm.get('term')?.touched" class="text-danger small">
+                                    <div *ngIf="loanForm.get('term')?.errors?.['required']">Term is required</div>
+                                    <div *ngIf="loanForm.get('term')?.errors?.['min']">Minimum term is 1 month</div>
+                                    <div *ngIf="loanForm.get('term')?.errors?.['max']">Maximum term is 60 months</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <!-- <label class="form-label">Interest Rate (%)</label> -->
+                                <input type="number" step="0.01" class="form-control" readonly="true" formControlName="interest_rate" placeholder=" Interest Rate (%) 7.5">
+                                <div *ngIf="loanForm.get('interest_rate')?.invalid && loanForm.get('interest_rate')?.touched" class="text-danger small">
+                                    <div *ngIf="loanForm.get('interest_rate')?.errors?.['required']">Interest rate is required</div>
+                                    <div *ngIf="loanForm.get('interest_rate')?.errors?.['min']">Minimum rate is 5%</div>
+                                    <div *ngIf="loanForm.get('interest_rate')?.errors?.['max']">Maximum rate is 30%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Purpose -->
+                        <div class="mb-4">
+                            <!-- <label class="form-label">Purpose of Loan</label> -->
+                            <textarea class="form-control" formControlName="purpose" rows="3" placeholder="Briefly describe what the loan will be used for"></textarea>
+                            <div *ngIf="loanForm.get('purpose')?.invalid && loanForm.get('purpose')?.touched" class="text-danger small">
+                                <div *ngIf="loanForm.get('purpose')?.errors?.['required']">Purpose is required</div>
+                                <div *ngIf="loanForm.get('purpose')?.errors?.['maxlength']">Maximum 200 characters</div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+
+                        <div class="d-grid">
+                            <button type="button" class="btn btn-primary" [disabled]="loanForm.invalid" (click)="onSubmit()">
+                                Submit Loan Application
+                                </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loan History Column -->
+        <div class="col-lg-12" *ngIf="is_officer">
+            <div class="card shadow-sm  history-card">
+                <div class="card-header bg-white border-bottom">
+                    <h5 class="mb-0">Your Loan History</h5>
+                </div>
+                <div class="card-body">
+                    <div *ngIf="loanHistory.length > 0; else noLoans">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th class="text-end">Amount</th>
+                                        <th class="text-end">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let loan of loanHistory">
+                                        <td>{{ loan.date | date }}</td>
+                                        <td class="text-end">{{ loan.amount | currency:'GHS':'symbol':'1.2-2' }}</td>
+                                        <td class="text-end">
+                                            <span class="badge" [ngClass]="getStatusClass(loan.status)">
+                        {{ loan.status | titlecase }}
+                      </span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <ng-template #noLoans>
+                        <div class="text-center py-4">
+                            <i class="bi bi-file-earmark-text display-5 text-muted mb-3"></i>
+                            <h5 class="text-muted">No Loan History</h5>
+                            <p class="text-muted small">Your previous loan applications will appear here</p>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- Add loading indicator for initial load -->
+        <div *ngIf="isLoading" class="text-center py-5">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-2">Loading loan applications...</p>
+        </div>
+
+        <!-- Loan Approval Section -->
+        <div class="loan-approval-section mt-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <div class="filter-control">
+                    <label class="me-2">Filter:</label>
+                    <select class="form-select form-select-lg" [(ngModel)]="selectedStatus">
+                        <option value="all">All Applications</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-12 col-lg-12" *ngFor="let loan of filteredLoans">
+                    <div class="card loan-card h-100" [class]="getLoanStatusClass(loan.status)">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <h6 class="card-title mb-1">{{loan.memberName}}</h6>
+                                    <small class="text-muted">{{loan.memberUuid}}</small>
+                                </div>
+                                <span class="badge" [ngClass]="{
+                                    'bg-warning': loan.status === 'pending',
+                                    'bg-success': loan.status === 'active',
+                                    'bg-danger': loan.status === 'rejected'
+                                    }">
+                                    {{loan.status | titlecase}}
+                                    </span>
+                            </div>
+
+                            <div class="loan-details">
+                                <div class="detail-row">
+                                    <span>Request Date:</span>
+                                    <strong>{{loan.requestDate | date}}</strong>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Amount:</span>
+                                    <strong>{{loan.amount | currency:'GHS':'symbol':'1.2-2'}}</strong>
+                                </div>
+                                <div class="detail-row">
+                                    <span>Purpose:</span>
+                                    <strong class="text-truncate">{{loan.purpose}}</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card-footer bg-transparent" *ngIf="loan.status === 'pending'">
+                            <div class="d-flex justify-content-end gap-2">
+                                <button class="btn btn-sm btn-success" (click)="openApprovalDialog(loan.id, 'approve')">
+                            Approve
+                            </button>
+                                <button class="btn btn-sm btn-outline-danger" (click)="openApprovalDialog(loan.id, 'reject')">
+                            Reject
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Approval Dialog -->
+        <div class="custom-modal" *ngIf="showApprovalDialog">
+            <div class="custom-modal-dialog">
+                <div class="custom-modal-content">
+                    <div class="custom-modal-header">
+                        <h5>Confirm Action</h5>
+                    </div>
+                    <div class="custom-modal-body">
+                        <p>Are you sure you want to {{currentLoanAction?.action}} this loan application?</p>
+                        <p class="text-muted">This action cannot be undone.</p>
+                    </div>
+
+
+                    <div class="custom-modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" [disabled]="isProcessing" (click)="cancelAction()">
+                        Cancel
+                        </button>
+                        <button type="button" class="btn" [class.btn-success]="currentLoanAction?.action === 'approve'" [class.btn-danger]="currentLoanAction?.action === 'reject'" [disabled]="isProcessing" (click)="confirmAction()">
+                        <span *ngIf="!isProcessing">{{currentLoanAction?.action | titlecase}}</span>
+                        <span *ngIf="isProcessing" class="spinner-border spinner-border-sm"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="custom-modal-backdrop" *ngIf="showApprovalDialog"></div>
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<!-- Confirmation Modal -->
+<div class="custom-modal" *ngIf="showConfirmationModal">
+    <div class="custom-modal-dialog shadow">
+        <div class="custom-modal-content">
+            <div class="custom-modal-header">
+                <h5 class="text-danger">Confirm Loan Application</h5>
+                <button type="button" class="close-btn" (click)="cancelSubmission()">&times;</button>
+            </div>
+            <div class="custom-modal-body">
+                <p>Please review your loan details before submitting:</p>
+
+                <div class="loan-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Amount:</span>
+                        <span class="detail-value">{{ loanPayload?.amount | currency:'GHS':'symbol':'1.2-2' }}</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Term:</span>
+                        <span class="detail-value">{{ loanPayload?.term }} months</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Interest Rate:</span>
+                        <span class="detail-value">{{ loanPayload?.interest_rate }}%</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Purpose:</span>
+                        <span class="detail-value">{{ loanPayload?.purpose }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="custom-modal-footer">
+                <button type="button" class="btn btn-outline-secondary" [disabled]="isSubmitting" (click)="cancelSubmission()">
+            Cancel
+          </button>
+                <button type="button" class="btn btn-primary" [disabled]="isSubmitting" (click)="confirmSubmission()">
+            <span *ngIf="!isSubmitting">Confirm</span>
+            <span *ngIf="isSubmitting" class="spinner-border spinner-border-sm" role="status"></span>
+          </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="custom-modal-backdrop" *ngIf="showConfirmationModal"></div>

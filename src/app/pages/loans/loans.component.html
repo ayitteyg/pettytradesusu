@@ -1,0 +1,189 @@
+<div class="loan-container pt-5">
+    <!-- Active Loan Section -->
+    <!-- <h2 class="mb-0  text-muted fs-2 fw-bolder">Your Loan</h2> -->
+    <div class="cards loan-cards mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+
+            <!-- <span class="badge bg-success">Active</span> -->
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="activeLoan; else noActiveLoan">
+                <!-- Loan Summary -->
+                <div class="row mb-4">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="card p-4 crd bg-amnt mt-2">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-mute fs-5 fw-bold text-warning">Amount:</span>
+                                <span class="fw-bold fs-6">{{ activeLoan.amount | currency:'GHS':'symbol':'1.2-2' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-mute text-warning">Disbursed:</span>
+                                <span class="fw-bold">{{ activeLoan.disbursedDate | date }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span class="text-mute text-warning">Interest:</span>
+                                <span class="fw-bold">{{ activeLoan.interestRate }}%</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class=" col-lg-4 col-md-12">
+
+                        <div class="card p-4 crd bg-total mt-2">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-mute fs-5 fw-bold">Total:</span>
+                                <span class="fw-bold text-info fs-6">{{ activeLoan.totalAmount| currency:'GHS':'symbol':'1.2-2' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-mute">Repayments:</span>
+                                <span class="fw-bold">{{ activeLoan.totalRepayments | currency:'GHS':'symbol':'1.2-2' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span class="text-mute">Balance:</span>
+                                <span class="fw-bold text-light">{{ currentBalance | currency:'GHS':'symbol':'1.2-2' }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class=" col-lg-4 col-md-12 mt-2">
+                        <div class="text-center card crd bg-prgs">
+                            <span class="text-warning">Repayment Progress</span>
+                            <div style="width: 200px; height: 180px; margin: auto;" class="text-danger">
+                                <!-- <circle-progress [percent]="progressPercentage || 0" [radius]="30" [outerStrokeWidth]="3" [innerStrokeWidth]="4" [outerStrokeColor]="'#0c5a'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500" [showUnits]="true" [units]="'%'"
+                                    [showSubtitle]="false" [showBackground]="false" [responsive]="true" [startFromZero]="false">
+                                </circle-progress> -->
+
+                                <circle-progress [percent]="progressPercentage || 0" [radius]="30" [outerStrokeWidth]="3" [innerStrokeWidth]="4" [outerStrokeColor]="'#0c5a'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500" [showUnits]="true" [units]="'%'"
+                                    [showSubtitle]="false" [showBackground]="false" [responsive]="true" [startFromZero]="false" [titleColor]="'#ff0000'" [titleFontSize]="'20'" [titleFontWeight]="'bold'">
+                                </circle-progress>
+
+                            </div>
+
+                            <ng-template #loading>
+                                <p>Loading total score...</p>
+                            </ng-template>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+                <!-- Repayment Progress
+                <div class="mb-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Repayment Progress</span>
+                        <span>{{ progressPercentage | number:'1.0-0' }}%</span>
+                    </div>
+                    <div class="progress" style="height: 15px;">
+                        <div class="progress-bar bg-primary" role="progressbar" [style.width]="progressPercentage + '%'"></div>
+                    </div>
+                </div> -->
+
+                <!-- Upcoming Payments -->
+                <!-- <h6 class="mb-3">Upcoming Payments</h6> -->
+
+                <div class="card p-4 mb-4">
+
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12">
+                            <i class="bi bi-calendar-check p-2"></i>
+                            <span class="text-muted fs-5">Next Payment:</span>
+                            <span class="text-danger"> {{ activeLoan.nextPayment.date | date }}</span>
+                            <span class="fw-bold  fs-3 p-2">{{ activeLoan.nextPayment.amount | currency:'GHS':'symbol':'1.2-2' }}</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <ng-template #noActiveLoan>
+                <div class="text-center py-4">
+                    <div class="mb-4">
+                        <i class="bi bi-piggy-bank display-4 text-muted"></i>
+                    </div>
+                    <h5 class="mb-3 fw-bold fs-6 text-danger">No Active Loan</h5>
+                    <h4 class="text-muted">You currently don't have an active loan</h4>
+                    <h4 class="text-muted mb-4" *ngIf="hasPendingLoan"> There is a Pending Loan Request waiting approval</h4>
+
+                    <button *ngIf="!hasPendingLoan" class="btn btn-primary" (click)="setActivePage('loan-request')">
+                         {{ toggleRequestForm ? '' : '' }}  Request Loan
+                       
+                    </button>
+
+
+                    <!-- <button class="btn btn-primary" (click)="requestNewLoan()">
+                        Request New Loan
+                    </button> -->
+                </div>
+
+            </ng-template>
+
+
+            <!-- Main Content -->
+            <div class="content">
+                <div [ngSwitch]="activePage">
+                    <app-loan-request *ngSwitchCase="'loan-request'"></app-loan-request>
+                </div>
+            </div>
+
+
+            <!-- Loan History Column -->
+            <div class="col-lg-12 col-sm-12">
+                <div class="cardd shadow-sm  history-card">
+                    <div class="card-header bg-white border-bottom">
+                        <h2 class="mb-0  fw-bold fs-4 text-muted">Your Loan History</h2>
+                    </div>
+                    <div class="cardd-body">
+                        <div *ngIf="loanHistory.length > 0; else noLoans">
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Date</th>
+                                            <th class="text-end">Amount</th>
+                                            <th class="text-end">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let loan of loanHistory">
+                                            <td>{{ loan.date | date }}</td>
+                                            <td class="text-end">{{ loan.amount | currency:'GHS':'symbol':'1.2-2' }}</td>
+                                            <td class="text-end">
+                                                <span class="badge" [ngClass]="getStatusClass(loan.status)">
+                                     {{ loan.status | titlecase }}
+                                     </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <ng-template #noLoans>
+                            <div class="text-center py-4">
+                                <i class="bi bi-file-earmark-text display-5 text-muted mb-3"></i>
+                                <h5 class="text-muted">No Loan History</h5>
+                                <p class="text-muted small">Your previous loan applications will appear here</p>
+                            </div>
+                        </ng-template>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
