@@ -239,6 +239,17 @@ input:focus {
     z-index: -10000;
 }
 
+.portfolio {
+    padding: 6px;
+    cursor: pointer;
+}
+
+.portfolio a {
+    /* text-decoration: none; */
+    color: rgb(22, 52, 59);
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     * {
         font-size: 13px;

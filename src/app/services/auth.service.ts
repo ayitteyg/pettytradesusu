@@ -31,6 +31,7 @@ export class AuthService {
         localStorage.setItem('church', res.church);
         localStorage.setItem('userId', res.userId);
         localStorage.setItem('first_name', res.first_name);
+        localStorage.setItem('is_officer', res.is_officer);
         return res;
       }),
       catchError(this.handleError)

@@ -121,9 +121,10 @@ export class MomoDepositComponent{
             clearInterval(pollInterval);
             this.processingPayment = false;
             // Optionally notify user
-            alert('Payment window timed out. Please try again.');
+            // alert('Payment window timed out. Please try again.');
+            this.notification.info("Payment window timed out. Please try again")
           }
-        }, 3000); // 5 minutes timeout
+        }, 10000); // 5 minutes timeout
 
     
         } else {

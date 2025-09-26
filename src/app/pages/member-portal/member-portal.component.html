@@ -44,7 +44,7 @@
 
 
 
-                    <li class="list-group-item">
+                    <li class="list-group-item" *ngIf="!is_officer">
                         <a class="nav-link" (click)="setActivePage('add-transaction')" routerLinkActive="active" aria-label="Add Transaction">
                             <i class="bi bi-plus-circle text-light"></i>
                             <span *ngIf="!isCollapsed">Transactions</span>
