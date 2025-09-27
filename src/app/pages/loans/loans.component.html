@@ -114,9 +114,9 @@
                     <div class="mb-4">
                         <i class="bi bi-piggy-bank display-4 text-muted"></i>
                     </div>
-                    <h5 class="mb-3 fw-bold fs-6 text-danger">No Active Loan</h5>
-                    <h4 class="text-muted">You currently don't have an active loan</h4>
-                    <h4 class="text-muted mb-4" *ngIf="hasPendingLoan"> There is a Pending Loan Request waiting approval</h4>
+                    <h5 class="mb-3 fw-bold fs-6 text-danger font-13">No Active Loan</h5>
+                    <h4 class="text-muted font-12">You currently don't have an active loan</h4>
+                    <h4 class="text-muted mb-4 font-12" *ngIf="hasPendingLoan"> There is a Pending Loan Request waiting approval</h4>
 
                     <button *ngIf="!hasPendingLoan" class="btn btn-primary" (click)="setActivePage('loan-request')">
                          {{ toggleRequestForm ? '' : '' }}  Request Loan
@@ -144,7 +144,7 @@
             <div class="col-lg-12 col-sm-12">
                 <div class="cardd shadow-sm  history-card">
                     <div class="card-header bg-white border-bottom">
-                        <h2 class="mb-0  fw-bold fs-4 text-muted">Your Loan History</h2>
+                        <h2 class="mb-0  fs-4 text-muted font-13 ">Your Loan History</h2>
                     </div>
                     <div class="cardd-body">
                         <div *ngIf="loanHistory.length > 0; else noLoans">
@@ -174,8 +174,8 @@
                         <ng-template #noLoans>
                             <div class="text-center py-4">
                                 <i class="bi bi-file-earmark-text display-5 text-muted mb-3"></i>
-                                <h5 class="text-muted">No Loan History</h5>
-                                <p class="text-muted small">Your previous loan applications will appear here</p>
+                                <h5 class="text-muted font-13">No Loan History</h5>
+                                <p class="text-muted small  font-12">Your previous loan applications will appear here</p>
                             </div>
                         </ng-template>
                     </div>

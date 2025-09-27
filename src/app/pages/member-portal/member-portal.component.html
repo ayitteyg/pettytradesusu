@@ -27,7 +27,7 @@
 
                     <li class="list-group-item">
                         <a class="nav-link" (click)="setActivePage('loans')" routerLinkActive="active" aria-label="loans">
-                            <i class="bi bi-calendar-check text-light"></i>
+                            <i class="bi bi-coins text-light"></i>
                             <span *ngIf="!isCollapsed">My Loans</span>
                         </a>
                     </li>
@@ -44,7 +44,7 @@
 
 
 
-                    <li class="list-group-item" *ngIf="!is_officer">
+                    <li class="list-group-item" *ngIf="is_officer">
                         <a class="nav-link" (click)="setActivePage('add-transaction')" routerLinkActive="active" aria-label="Add Transaction">
                             <i class="bi bi-plus-circle text-light"></i>
                             <span *ngIf="!isCollapsed">Transactions</span>

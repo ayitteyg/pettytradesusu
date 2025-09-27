@@ -67,10 +67,13 @@
 }
 
 @media (max-width: 768px) {
-    * {
-        font-size: 13px;
-    }
     .loan-container {
-        width: 95%;
+        width: 100%;
+    }
+    .font-12 {
+        font-size: 12px;
+    }
+    .font-13 {
+        font-size: 13px;
     }
 }

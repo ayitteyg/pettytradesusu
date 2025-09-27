@@ -112,7 +112,7 @@ export class MomoDepositComponent{
 
           // Optional: Also check if payment was completed without window closure
           // You might want to add additional checks here
-        }, 1000);
+        }, 30000);
 
         // Set timeout to automatically close after some time (safety measure)
         const timeout = setTimeout(() => {
