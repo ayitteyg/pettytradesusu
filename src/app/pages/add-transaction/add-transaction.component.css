@@ -85,6 +85,13 @@
     .transaction-form-container {
         width: 95%;
     }
+    .input,
+    textarea {
+        font-size: 12px;
+    }
+    .select-options {
+        font-size: 12px;
+    }
 }
 
 .bg-amnt {

@@ -293,3 +293,12 @@
         transform: rotate(360deg);
     }
 }
+
+@media (max-width: 768px) {
+    input {
+        font-size: 12px;
+    }
+    label {
+        font-size: 13px;
+    }
+}

@@ -4,7 +4,7 @@
         <div class="bank-logo">
             <!-- <img src="assets/images/bank-logo.svg" alt="Bank Logo"> -->
         </div>
-        <p class="fs-3 fw-bold pb-4">Record Transactions</p>
+        <p class="fs-3 mb-2">Record Transactions</p>
     </div>
 
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -25,7 +25,7 @@
 
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>Transaction Type</mat-label>
-            <mat-select formControlName="transaction_type">
+            <mat-select formControlName="transaction_type" class="select-options">
                 <mat-option value="deposit">Deposit</mat-option>
                 <mat-option value="withdrawal">Withdrawal</mat-option>
                 <mat-option value="loan_repayment">Loan Repayment</mat-option>

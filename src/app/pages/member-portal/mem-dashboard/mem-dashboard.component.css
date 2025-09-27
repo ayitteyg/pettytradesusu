@@ -480,6 +480,17 @@
         left: 50px;
         text-align: end;
     }
+    .card-content,
+    p {
+        font-size: 12px;
+    }
+    .card-content,
+    h3 {
+        font-size: 13px;
+    }
+    .welcome {
+        font-size: 12px;
+    }
 }
 
 .bg-sv-crd {

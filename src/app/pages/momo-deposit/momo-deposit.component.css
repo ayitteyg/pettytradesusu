@@ -69,6 +69,9 @@ input[type="radio"]:checked+.network-option {
         width: 100%;
         margin: 0px;
     }
+    .step-label {
+        font-size: 12px;
+    }
 }
 
 
