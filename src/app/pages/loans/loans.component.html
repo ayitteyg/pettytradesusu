@@ -95,9 +95,9 @@
                     <div class="row">
                         <div class="col-lg-12 col-sm-12">
                             <i class="bi bi-calendar-check p-2"></i>
-                            <span class="text-muted fs-5">Next Payment:</span>
-                            <span class="text-danger"> {{ activeLoan.nextPayment.date | date }}</span>
-                            <span class="fw-bold  fs-3 p-2">{{ activeLoan.nextPayment.amount | currency:'GHS':'symbol':'1.2-2' }}</span>
+                            <span class="text-muted fs-5 font-13">Next Payment:</span>
+                            <span class="text-danger font-12"> {{ activeLoan.nextPayment.date | date }}</span>
+                            <span class="fw-bold  fs-3 p-2 font-12">{{ activeLoan.nextPayment.amount | currency:'GHS':'symbol':'1.2-2' }}</span>
 
                         </div>
 
@@ -144,7 +144,7 @@
             <div class="col-lg-12 col-sm-12">
                 <div class="cardd shadow-sm  history-card">
                     <div class="card-header bg-white border-bottom">
-                        <h2 class="mb-0  fs-4 text-muted font-13 ">Your Loan History</h2>
+                        <h2 class="mb-0  text-muted font-13 ">Your Loan History</h2>
                     </div>
                     <div class="cardd-body">
                         <div *ngIf="loanHistory.length > 0; else noLoans">
@@ -159,9 +159,9 @@
                                     </thead>
                                     <tbody>
                                         <tr *ngFor="let loan of loanHistory">
-                                            <td>{{ loan.date | date }}</td>
-                                            <td class="text-end">{{ loan.amount | currency:'GHS':'symbol':'1.2-2' }}</td>
-                                            <td class="text-end">
+                                            <td class="font-12">{{ loan.date | date }}</td>
+                                            <td class="text-end  font-12">{{ loan.amount | currency:'GHS':'symbol':'1.2-2' }}</td>
+                                            <td class="text-end" font-12>
                                                 <span class="badge" [ngClass]="getStatusClass(loan.status)">
                                      {{ loan.status | titlecase }}
                                      </span>
