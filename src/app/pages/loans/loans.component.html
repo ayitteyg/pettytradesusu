@@ -3,15 +3,22 @@
     <!-- <h2 class="mb-0  text-muted fs-2 fw-bolder">Your Loan</h2> -->
     <div class="cards loan-cards mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-
             <!-- <span class="badge bg-success">Active</span> -->
+
+
         </div>
+
+
+
+
 
         <div class="card-body">
             <div *ngIf="activeLoan; else noActiveLoan">
+
+
                 <!-- Loan Summary -->
                 <div class="row mb-4">
-                    <div class="col-lg-4 col-md-12">
+                    <div class="col-lg-4 col-md-12" data-aos="zoom-in-right" data-aos-duration="3000">
                         <div class="card p-4 crd bg-amnt mt-2">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-mute fs-5 fw-bold text-warning">Amount:</span>
@@ -31,7 +38,7 @@
 
                     <div class=" col-lg-4 col-md-12">
 
-                        <div class="card p-4 crd bg-total mt-2">
+                        <div class="card p-4 crd bg-total mt-2" data-aos="zoom-in-down" data-aos-duration="3000">
                             <div class="d-flex justify-content-between mb-2">
                                 <span class="text-mute fs-5 fw-bold">Total:</span>
                                 <span class="fw-bold text-info fs-6">{{ activeLoan.totalAmount| currency:'GHS':'symbol':'1.2-2' }}</span>
@@ -52,17 +59,18 @@
                     </div>
 
 
-                    <div class=" col-lg-4 col-md-12 mt-2">
+                    <div class=" col-lg-4 col-md-12 mt-2" data-aos="zoom-in-left" data-aos-duration="3000">
                         <div class="text-center card crd bg-prgs">
-                            <span class="text-warning">Repayment Progress</span>
-                            <div style="width: 200px; height: 180px; margin: auto;" class="text-danger">
-                                <!-- <circle-progress [percent]="progressPercentage || 0" [radius]="30" [outerStrokeWidth]="3" [innerStrokeWidth]="4" [outerStrokeColor]="'#0c5a'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500" [showUnits]="true" [units]="'%'"
-                                    [showSubtitle]="false" [showBackground]="false" [responsive]="true" [startFromZero]="false">
-                                </circle-progress> -->
+                            <span class="text-warning mt-3">Repayment Progress {{progressPercentage | number:"1.2-2"}} %</span>
+                            <div style="width: 200px; height: 100px; margin: auto;" class="text-danger">
 
-                                <circle-progress [percent]="progressPercentage || 0" [radius]="30" [outerStrokeWidth]="3" [innerStrokeWidth]="4" [outerStrokeColor]="'#0c5a'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500" [showUnits]="true" [units]="'%'"
-                                    [showSubtitle]="false" [showBackground]="false" [responsive]="true" [startFromZero]="false" [titleColor]="'#ff0000'" [titleFontSize]="'20'" [titleFontWeight]="'bold'">
-                                </circle-progress>
+                                <mat-progress-bar mode="determinate" [value]="progressPercentage || 0" color="accent">">
+                                </mat-progress-bar>
+
+
+                                <!-- <circle-progress [percent]="progressPercentage || 0" [radius]="30" [outerStrokeWidth]="3" [innerStrokeWidth]="4" [outerStrokeColor]="'#0c5a'" [innerStrokeColor]="'#C7E596'" [animation]="true" [animationDuration]="500" [showUnits]="true" [units]="''" [showSubtitle]="false"
+                                    [showBackground]="false" [responsive]="true" [startFromZero]="false" [titleColor]="'#fff'" [titleFontSize]="'20'" [titleFontWeight]="'bold'">
+                                </circle-progress> -->
 
                             </div>
 
@@ -110,10 +118,19 @@
 
 
             <ng-template #noActiveLoan>
+
+
+
                 <div class="text-center py-4">
                     <div class="mb-4">
                         <i class="bi bi-piggy-bank display-4 text-muted"></i>
                     </div>
+
+                    <div *ngIf="loading" class="text-center my-5">
+                        <div class="spinner-border text-primary" role="status"></div>
+                        <p>Loading loan data...</p>
+                    </div>
+
                     <h5 class="mb-3 fw-bold fs-6 text-danger font-13">No Active Loan</h5>
                     <h4 class="text-muted font-12">You currently don't have an active loan</h4>
                     <h4 class="text-muted mb-4 font-12" *ngIf="hasPendingLoan"> There is a Pending Loan Request waiting approval</h4>
@@ -122,11 +139,6 @@
                          {{ toggleRequestForm ? '' : '' }}  Request Loan
                        
                     </button>
-
-
-                    <!-- <button class="btn btn-primary" (click)="requestNewLoan()">
-                        Request New Loan
-                    </button> -->
                 </div>
 
             </ng-template>
@@ -172,6 +184,9 @@
                             </div>
                         </div>
                         <ng-template #noLoans>
+
+
+
                             <div class="text-center py-4">
                                 <i class="bi bi-file-earmark-text display-5 text-muted mb-3"></i>
                                 <h5 class="text-muted font-13">No Loan History</h5>

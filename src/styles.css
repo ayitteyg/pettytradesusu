@@ -1,4 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.mat-mdc-progress-bar {
+    height: 20px !important;
+    border-radius: 10px;
+}
+
+.mat-mdc-progress-bar .mdc-linear-progress__bar-inner {
+    border-radius: 10px !important;
+}

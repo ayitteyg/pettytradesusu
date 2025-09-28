@@ -36,6 +36,11 @@
     color: white;
 }
 
+::ng-deep .mat-mdc-progress-bar {
+    height: 30px !important;
+    border-radius: 25px;
+}
+
 .crd {
     height: 200px;
     margin: auto;

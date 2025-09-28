@@ -22,6 +22,7 @@ export class LoansComponent implements OnInit {
   toggleRequestForm: boolean = false;
   memberid: number = 0;
 
+  loading = false;
   
   setActivePage(page: string) {
     this.toggleRequestForm = !this.toggleRequestForm
@@ -39,12 +40,14 @@ export class LoansComponent implements OnInit {
    {}
 
   ngOnInit(): void {
+    this.loading = true
     this.apiservice.getLoanSummary().subscribe({
       next: (data) => {
         console.log(data)
         this.activeLoan = data.activeLoan;
         this.loanHistory = data.loanHistory;
         this.loadHistory()
+        this.loading = true
       },
       error: (err) => {
         console.error('Failed to fetch loan summary:', err);
@@ -68,11 +71,14 @@ export class LoansComponent implements OnInit {
 
 
   loadHistory() {
+    this.loading = true
     this.apiservice.getLoanHistory().subscribe(data => {
       this.loanHistory = data;
       
       // Check if any loan has status 'pending'
       this.hasPendingLoan = data.some((loan: { status: string; }) => loan.status === 'pending');
+
+      this.loading = false
       
       console.log('Loan History:', data);
       console.log('Has Pending Loan:', this.hasPendingLoan);

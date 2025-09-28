@@ -7,6 +7,13 @@
 
         <div class="card-body">
             <!-- Balance Summary -->
+
+
+            <div *ngIf="loading" class="text-center my-5">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p>Loading your balances...</p>
+            </div>
+
             <div class="balance-summary mb-4">
                 <div class="balance-item">
                     <span class="balance-label">Current Balance:</span>
@@ -22,12 +29,12 @@
 
                 <div class="balance-item">
                     <span class="balance-label">Available Balance:</span>
-                    <span class="balance-value text-primary">{{ formatCurrency(availableBalance) }}</span>
+                    <span class="balance-value text-primary">{{ formatCurrency(availableBalancetoWithdrawl) }}</span>
                 </div>
 
                 <div class="balance-note">
                     <small class="text-muted">
-            Maximum withdrawal: {{ formatCurrency(maxWithdrawalAmount) }} (80% of available balance)
+            Maximum withdrawal: {{ formatCurrency(maxWithdrawalAmountToWithdrwal) }} (80% of available balance)
           </small>
                 </div>
             </div>
@@ -46,14 +53,14 @@
                         <div *ngIf="amount?.errors?.['required']">Amount is required</div>
                         <div *ngIf="amount?.errors?.['min']">Minimum withdrawal is GHS 1.00</div>
                         <div *ngIf="amount?.errors?.['max']">
-                            Cannot withdraw more than {{ formatCurrency(maxWithdrawalAmount) }}
+                            Cannot withdraw more than {{ formatCurrency(maxWithdrawalAmountToWithdrwal) }}
                         </div>
                     </div>
 
                     <!-- Available balance info -->
-                    <div class="text-muted small mt-2">
-                        Available: {{ formatCurrency(availableBalance) }}
-                    </div>
+                    <!-- <div class="text-muted small mt-2">
+                        Available: {{ formatCurrency(availableBalancetoWithdrawl) }}
+                    </div> -->
                 </div>
 
                 <div class="d-grid">

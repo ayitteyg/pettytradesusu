@@ -450,6 +450,30 @@
     text-align: end;
 }
 
+.typing-animations {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 1px solid;
+    width: 1px;
+    animation: typing 4s steps(20, end) forwards, blink 0.5s step-end;
+}
+
+@keyframes typing {
+    from {
+        width: 0
+    }
+    to {
+        width: 20ch;
+    }
+    /* 16 characters, adjust as needed */
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent
+    }
+}
+
 
 /* Responsive Adjustments */
 

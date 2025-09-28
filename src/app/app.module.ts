@@ -24,6 +24,8 @@ import { MatListModule } from '@angular/material/list';
 
 // Circle progress
 import { NgCircleProgressModule } from 'ng-circle-progress';
+//line progress
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // Components
 import { AuthInterceptor } from './services/auth-interceptor.service';
@@ -96,6 +98,7 @@ const circleProgressConfig = {
     MatInputModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatDatepickerModule,
     MatNativeDateModule,

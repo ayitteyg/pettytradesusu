@@ -15,6 +15,7 @@ import { Router } from '@angular/router';
 export class WithdrawComponent {
   withdrawForm: FormGroup;
   showConfirmationModal = false;
+  loading:boolean = false
   isProcessing = false;
     activeLoan: any = null;
   // Dummy data - replace with actual API data
@@ -35,7 +36,7 @@ export class WithdrawComponent {
       amount: ['', [
         Validators.required,
         // Validators.min(1),
-        // Validators.max(this.maxWithdrawalAmount)
+        Validators.max(this.maxWithdrawalAmountToWithdrwal)
       ]]
     });
   }
@@ -45,26 +46,29 @@ export class WithdrawComponent {
   }
 
 
+  get availableBalancetoWithdrawl(): number {
+  return (this.currentBalance || 0) - (this.upcomingLoanDeduction || 0);
+}
+
+ get maxWithdrawalAmountToWithdrwal(): number {
+  return (this.availableBalancetoWithdrawl * 0.8 || 0);
+}
+
+
   ngOnInit(): void {
    
-   this.apiservice.getDashboardData().subscribe({
-    next: (res:any)=>{
-      const summary = res.data.summary;
-      this.currentBalance = summary.current_balance || 0; 
-      if (this.currentBalance  > 0){
-        this.is_currentBalance_zero = false
+   
+   this.loadCurrentBalance()
 
-      }
-    }
-   }),
 
    this.apiservice.getLoanSummary().subscribe({
+    
       next: (data) => {
+        this.loading = true
         console.log(data)
         this.activeLoan = data.activeLoan;
         this.upcomingLoanDeduction = this.activeLoan.nextPayment.amount || 0
-        this.availableBalance = this.currentBalance - this.upcomingLoanDeduction;
-        this.maxWithdrawalAmount = this.availableBalance * 0.8; // 80% of available balance
+        this.loading = false
       },
       error: (err) => {
         console.error('Failed to fetch loan summary:', err);
@@ -73,6 +77,28 @@ export class WithdrawComponent {
 
     
   }
+
+
+
+  loadCurrentBalance(): void {
+     this.loading = true
+    this.apiservice.getDashboardData().subscribe({
+      next: (res: any) => {
+        const summary = res.data.summary || {};
+        this.currentBalance = summary.current_balance || 0;
+        this.is_currentBalance_zero = this.currentBalance <= 0;
+
+        console.log("summary-withdrawal: ", summary);
+        this.loading = false
+      },
+      error: (err: any) => {
+        console.error("Failed to fetch balance:", err);
+        this.currentBalance = 0;
+        this.is_currentBalance_zero = true;
+      }
+    });
+  }
+
 
 
   onSubmit() {

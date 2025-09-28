@@ -71,7 +71,7 @@ export class MomoDepositComponent{
     this.paymentStatus = 'pending';
 
     const paymentData = {
-      amount: this.total,
+      amount: this.depositForm.value.amount,
       network: this.depositForm.value.network,
       phone_number: this.depositForm.value.phoneNumber,
     };
@@ -89,42 +89,40 @@ export class MomoDepositComponent{
           console.log(response.status)
           // window.location.href = response.authorization_url;
 
-        // Open a new window for checkout
-        const win = window.open(response.authorization_url, '_blank', 'width=500,height=600');
+                      // Open payment popup
+            const win = window.open(response.authorization_url, '_blank', 'width=500,height=600');
 
-        if (!win) {
-          // Handle case where popup is blocked
-          alert('Please allow popups for this site to complete payment');
-          this.processingPayment = false;
-          return;
-        }
+            if (!win) {
+              alert('Please allow popups for this site to complete payment');
+              this.processingPayment = false;
+              return;
+            }
 
-        // Set up polling to check both window closure and payment status
-        const pollInterval = setInterval(() => {
-          // Check if window was closed by user
-          if (win.closed) {
-            clearInterval(pollInterval);
-            this.paymentReference = response.reference;
-            this.pollPaymentStatus(response.reference);
-            this.processingPayment = false;
-            return;
-          }
+            // Track references so both timeout + polling can clean them
+            let pollInterval: any;
+            let timeout: any;
 
-          // Optional: Also check if payment was completed without window closure
-          // You might want to add additional checks here
-        }, 30000);
+            // Poll every 3s to check if user closed window
+            pollInterval = setInterval(() => {
+              if (win.closed) {
+                clearInterval(pollInterval);
+                clearTimeout(timeout);
+                this.paymentReference = response.reference;
+                this.pollPaymentStatus(response.reference);
+                this.processingPayment = false; // always reset
+              }
+            }, 1000);
 
-        // Set timeout to automatically close after some time (safety measure)
-        const timeout = setTimeout(() => {
-          if (!win.closed) {
-            win.close(); // Safely close the window
-            clearInterval(pollInterval);
-            this.processingPayment = false;
-            // Optionally notify user
-            // alert('Payment window timed out. Please try again.');
-            this.notification.info("Payment window timed out. Please try again")
-          }
-        }, 10000); // 5 minutes timeout
+            // Hard timeout after 5 mins
+            timeout = setTimeout(() => {
+              clearInterval(pollInterval); // always clear polling
+              if (!win.closed) {
+                win.close();
+                this.processingPayment = false; 
+                this.notification.info("Payment window timed out. Please try again");
+              }
+              this.processingPayment = false; // always reset
+            }, 5 * 60 * 1000);
 
     
         } else {
@@ -172,7 +170,7 @@ export class MomoDepositComponent{
           this.handlePaymentError(err.message || 'Verification failed');
         }
       });
-    }, 2000);
+    }, 10000);
   }
 
   handlePaymentError(message: string) {
@@ -195,7 +193,5 @@ export class MomoDepositComponent{
 
 
 }
-function ngOnInit() {
-  throw new Error('Function not implemented.');
-}
+
 

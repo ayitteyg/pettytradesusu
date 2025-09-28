@@ -174,4 +174,27 @@ export class MemDashboardComponent{
   }
 
 
+
+  
+  //typing effect
+  appNameText: string = 'WELCOME TO PETTY TRADERS SUSU';
+  displayAppNameText: string = '';
+  currentIndex: number = 0;
+  intervalId: any;
+
+
+  startTyping() {
+    this.intervalId = setInterval(() => {
+      if (this.currentIndex < this.appNameText.length) {
+        this.displayAppNameText += this.appNameText[this.currentIndex];
+        this.currentIndex++;
+      } else {
+        clearInterval(this.intervalId); // Stop when complete
+      }
+    }, 80); // Speed: 150ms per letter, you can adjust this
+  }
+
+
+
+
 }

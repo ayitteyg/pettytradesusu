@@ -4,7 +4,8 @@
     <div class="p-5">
         <!-- <div class="avatarr">{{memberId || ""}}</div> -->
         <div>
-            <h2 class="fs-5 text-muted  welcome">Welcome, {{username}}</h2>
+            <!-- {{ displayAppNameText }} -->
+            <h2 class="fs-5 text-muted  welcome typing-animations">Welcome, {{username}}</h2>
             <div class="">
                 <!-- <span class="badge church-badge">{{church}}</span> -->
 
@@ -22,9 +23,10 @@
 
     <div *ngIf="!loading">
 
+
         <!-- Summary Cards Grid -->
         <div class="summary-grid">
-            <div class="summary-card shadoww bg-sv-crd savings-card">
+            <div class="summary-card shadoww bg-sv-crd savings-card" data-aos="flip-left" data-aos-easing="ease-out-cubic" data-aos-duration="3000">
                 <div class="card-iconn bg-sv-crd p-3">
                     <i class="bi bi-bank"></i>
                 </div>
@@ -35,7 +37,7 @@
                 </div>
             </div>
 
-            <div class="summary-card shadoww bg-wtd-crd loan-card">
+            <div class="summary-card shadoww bg-wtd-crd loan-card" data-aos="zoom-in-right" data-aos-duration="3000">
                 <div class="card-iconn bg-wtd-crd p-3">
                     <i class="bi bi-cash"></i>
                 </div>
@@ -47,7 +49,7 @@
                 </div>
             </div>
 
-            <div class="summary-card shadoww bg-bal-crd repayment-card">
+            <div class="summary-card shadoww bg-bal-crd repayment-card" data-aos="zoom-in-left" data-aos-duration="3000">
                 <div class="card-iconn  bg-bal-crd p-3">
                     <i class="bi bi-calendar-check"></i>
                 </div>
