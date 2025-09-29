@@ -133,6 +133,8 @@ export class WithdrawComponent {
 
     if(this.withdrawForm.value.amount > this.maxWithdrawalAmountToWithdrwal){
       this.notification.warning("Withdrawal exceed available amount")
+      this.isProcessing = false;
+        this.showConfirmationModal = false;
 
     }else{
          this.apiservice.submitTransaction(payload).subscribe({
