@@ -36,7 +36,7 @@ export class WithdrawComponent {
       amount: ['', [
         Validators.required,
         // Validators.min(1),
-        // Validators.max(this.maxWithdrawalAmountToWithdrwal)
+        Validators.max(this.maxWithdrawalAmountToWithdrwal)
       ]]
     });
   }
