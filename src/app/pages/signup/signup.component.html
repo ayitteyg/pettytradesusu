@@ -43,7 +43,7 @@
             <div class="form-group">
                 <label for="email">Email Address</label>
                 <div class="input-with-icon">
-                    <i class="icon-email"></i>
+                    <i class="bi bi-envelope"></i>
                     <input type="email" id="email" formControlName="email" placeholder="Enter your email" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }">
                 </div>
                 <div *ngIf="f['email'].errors" class="invalid-feedback">

@@ -35,8 +35,8 @@ export class WithdrawComponent {
     this.withdrawForm = this.fb.group({
       amount: ['', [
         Validators.required,
-        Validators.min(1),
-        Validators.max(this.maxWithdrawalAmountToWithdrwal)
+        // Validators.min(1),
+        // Validators.max(this.maxWithdrawalAmountToWithdrwal)
       ]]
     });
   }

@@ -1,21 +1,17 @@
 <div class="dashboard-container">
     <!-- Welcome Banner with Profile -->
 
-    <div class="p-5">
-        <!-- <div class="avatarr">{{memberId || ""}}</div> -->
-        <div>
-            <!-- {{ displayAppNameText }} -->
-            <h2 class="fs-5 text-muted  welcome typing-animations">Welcome, {{username}}</h2>
-            <div class="">
-                <!-- <span class="badge church-badge">{{church}}</span> -->
-
-            </div>
-        </div>
-    </div>
+    <!-- <div class="p-5"> -->
+    <!-- <div class="avatarr">{{memberId || ""}}</div> -->
+    <!-- <div data-aos="zoom-in-right" data-aos-duration="3000"> -->
+    <!-- {{ displayAppNameText }} -->
+    <!-- <h2 class="fs-5 text-muted  welcome typing-animations">Welcome, {{username}}</h2> -->
+    <!-- </div> -->
+    <!-- </div> -->
 
 
 
-    <div *ngIf="loading" class="text-center my-5">
+    <div *ngIf="loading" class="text-center my-5" data-aos="zoom-in-right" data-aos-duration="3000">
         <div class="spinner-border text-primary" role="status"></div>
         <p>Loading dashboard data...</p>
     </div>

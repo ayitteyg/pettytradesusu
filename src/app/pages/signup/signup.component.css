@@ -298,7 +298,13 @@
     input {
         font-size: 12px;
     }
-    label {
+    .label {
+        font-size: 12px;
+    }
+    * {
+        scroll-behavior: smooth;
+        box-sizing: border-box;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
         font-size: 12px;
     }
 }

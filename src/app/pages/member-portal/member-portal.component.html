@@ -15,6 +15,13 @@
                 <!-- Sidebar Menu -->
                 <ul class="list-group">
 
+                    <li class="list-group-item">
+                        <a class="nav-link" aria-label="Member dashboard">
+                            <i class="bi bi-person"></i>
+                            <span class="text-danger" *ngIf="!isCollapsed">Hi, {{username}}</span>
+                        </a>
+                    </li>
+
 
                     <li class="list-group-item">
                         <a class="nav-link" (click)="setActivePage('dashboard')" routerLinkActive="active" aria-label="Member dashboard">

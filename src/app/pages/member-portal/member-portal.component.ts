@@ -15,6 +15,7 @@ export class MemberPortalComponent implements OnInit{
   isCollapsed = false;
   isSidebarCollapsed = false;
   is_officer = localStorage.getItem('is_officer')
+  username = localStorage.getItem('username');
 
 
 
