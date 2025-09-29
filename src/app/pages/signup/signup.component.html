@@ -15,7 +15,7 @@
             <div class="form-group">
                 <label for="first_name">First name</label>
                 <div class="input-with-icon">
-                    <i class="icon-user"></i>
+                    <i class="bi bi-person"></i>
                     <input type="text" id="first_name" formControlName="first_name" placeholder="Enter your First Name" [ngClass]="{ 'is-invalid': f['first_name'].touched && f['first_name'].errors }">
                 </div>
                 <div *ngIf="f['first_name'].errors" class="invalid-feedback">
@@ -29,7 +29,7 @@
             <div class="form-group">
                 <label for="username">Username</label>
                 <div class="input-with-icon">
-                    <i class="icon-user"></i>
+                    <i class="bi bi-person"></i>
                     <input type="text" id="username" formControlName="username" placeholder="Enter your username" [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }">
                 </div>
                 <div *ngIf="f['username'].errors" class="invalid-feedback">
@@ -55,7 +55,7 @@
             <div class="form-group">
                 <label for="password1">Password</label>
                 <div class="input-with-icon">
-                    <!-- <i class="bi bi-lock"></i> -->
+                    <i class="bi bi-lock"></i>
                     <input [type]="showPassword ? 'text' : 'password'" id="password1" formControlName="password1" placeholder="Create a password" [ngClass]="{ 'is-invalid': f['password1'].touched && f['password1'].errors }">
                     <!-- <i class="bi toggle-password" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password1')" style="cursor: pointer"></i> -->
                 </div>
@@ -75,7 +75,7 @@
             <div class="form-group">
                 <label for="password2">Confirm Password</label>
                 <div class="input-with-icon">
-                    <!-- <i class="bi bi-lock"></i> -->
+                    <i class="bi bi-lock"></i>
                     <!-- <i class="bi toggle-password" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password2')" style="cursor: pointer"></i> -->
                     <input [type]="showConfirmPassword ? 'text' : 'password'" id="password2" formControlName="password2" placeholder="Confirm your password" [ngClass]="{ 'is-invalid': (f['password2'].touched && f['password2'].errors) || signupForm.errors?.['mismatch'] }">
 
