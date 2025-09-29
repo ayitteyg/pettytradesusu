@@ -36,7 +36,7 @@ export class WithdrawComponent {
       amount: ['', [
         Validators.required,
         // Validators.min(1),
-        Validators.max(this.maxWithdrawalAmountToWithdrwal)
+        // Validators.max(this.maxWithdrawalAmountToWithdrwal)
       ]]
     });
   }
@@ -130,7 +130,12 @@ export class WithdrawComponent {
     // Simulate API call
     const amount = this.withdrawForm.get('amount');
 
-    this.apiservice.submitTransaction(payload).subscribe({
+
+    if(this.withdrawForm.value.amount > this.maxWithdrawalAmountToWithdrwal){
+      this.notification.warning("Withdrawal exceed available amount")
+
+    }else{
+         this.apiservice.submitTransaction(payload).subscribe({
       next:()=>{
         this.notification.info("Withdrawal request received, Momo Wallet will be credit Shortly")
         this.withdrawForm.reset()
@@ -146,6 +151,10 @@ export class WithdrawComponent {
       }
 
     })
+    }
+
+
+ 
     // setTimeout(() => {
     //   console.log('Withdrawal payload:', {
     //     amount: this.withdrawForm.value.amount,
