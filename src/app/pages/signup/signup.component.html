@@ -13,10 +13,10 @@
 
 
             <div class="form-group">
-                <label for="first_name">First name</label>
+                <label class="small-text" for="first_name">First name</label>
                 <div class="input-with-icon">
                     <i class="bi bi-person"></i>
-                    <input type="text" id="first_name" formControlName="first_name" placeholder="Enter your First Name" [ngClass]="{ 'is-invalid': f['first_name'].touched && f['first_name'].errors }">
+                    <input class="small-text" type="text" id="first_name" formControlName="first_name" placeholder="Enter your First Name" [ngClass]="{ 'is-invalid': f['first_name'].touched && f['first_name'].errors }">
                 </div>
                 <div *ngIf="f['first_name'].errors" class="invalid-feedback">
                     <span *ngIf="f['first_name'].errors['required']">First Name is required</span>
@@ -27,10 +27,10 @@
 
 
             <div class="form-group">
-                <label for="username">Username</label>
+                <label class="small-text" for="username">Username</label>
                 <div class="input-with-icon">
                     <i class="bi bi-person"></i>
-                    <input type="text" id="username" formControlName="username" placeholder="Enter your username" [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }">
+                    <input class="small-text" type="text" id="username" formControlName="username" placeholder="Enter your username" [ngClass]="{ 'is-invalid': f['username'].touched && f['username'].errors }">
                 </div>
                 <div *ngIf="f['username'].errors" class="invalid-feedback">
                     <span *ngIf="f['username'].errors['required']">Username is required</span>
@@ -41,10 +41,10 @@
 
 
             <div class="form-group">
-                <label for="email">Email Address</label>
+                <label class="small-text" for="email">Email Address</label>
                 <div class="input-with-icon">
                     <i class="bi bi-envelope"></i>
-                    <input type="email" id="email" formControlName="email" placeholder="Enter your email" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }">
+                    <input class="small-text" type="email" id="email" formControlName="email" placeholder="Enter your email" [ngClass]="{ 'is-invalid': f['email'].touched && f['email'].errors }">
                 </div>
                 <div *ngIf="f['email'].errors" class="invalid-feedback">
                     <span *ngIf="f['email'].errors['required']">Email is required</span>
@@ -53,10 +53,10 @@
             </div>
 
             <div class="form-group">
-                <label for="password1">Password</label>
+                <label class="small-text" for="password1">Password</label>
                 <div class="input-with-icon">
                     <i class="bi bi-lock"></i>
-                    <input [type]="showPassword ? 'text' : 'password'" id="password1" formControlName="password1" placeholder="Create a password" [ngClass]="{ 'is-invalid': f['password1'].touched && f['password1'].errors }">
+                    <input class="small-text" [type]="showPassword ? 'text' : 'password'" id="password1" formControlName="password1" placeholder="Create a password" [ngClass]="{ 'is-invalid': f['password1'].touched && f['password1'].errors }">
                     <!-- <i class="bi toggle-password" [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password1')" style="cursor: pointer"></i> -->
                 </div>
                 <div *ngIf="f['password1'].errors" class="invalid-feedback">
@@ -73,11 +73,11 @@
             </div>
 
             <div class="form-group">
-                <label for="password2">Confirm Password</label>
+                <label class="small-text" for="password2">Confirm Password</label>
                 <div class="input-with-icon">
                     <i class="bi bi-lock"></i>
                     <!-- <i class="bi toggle-password" [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" (click)="togglePasswordVisibility('password2')" style="cursor: pointer"></i> -->
-                    <input [type]="showConfirmPassword ? 'text' : 'password'" id="password2" formControlName="password2" placeholder="Confirm your password" [ngClass]="{ 'is-invalid': (f['password2'].touched && f['password2'].errors) || signupForm.errors?.['mismatch'] }">
+                    <input class="small-text" [type]="showConfirmPassword ? 'text' : 'password'" id="password2" formControlName="password2" placeholder="Confirm your password" [ngClass]="{ 'is-invalid': (f['password2'].touched && f['password2'].errors) || signupForm.errors?.['mismatch'] }">
 
 
                     <!-- <i class="toggle-password" [class.icon-eye]="!showConfirmPassword" [class.icon-eye-off]="showConfirmPassword" (click)="togglePasswordVisibility('password2')"></i> -->

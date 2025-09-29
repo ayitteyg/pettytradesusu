@@ -51,7 +51,7 @@
                     <!-- Validation Messages -->
                     <div *ngIf="amount?.invalid && amount?.touched" class="text-danger small mt-2">
                         <div *ngIf="amount?.errors?.['required']">Amount is required</div>
-                        <div *ngIf="amount?.errors?.['min']">Minimum withdrawal is GHS 1.00</div>
+                        <!-- <div *ngIf="amount?.errors?.['min']">Minimum withdrawal is GHS 1.00</div> -->
                         <div *ngIf="amount?.errors?.['max']">
                             Cannot withdraw more than {{ formatCurrency(maxWithdrawalAmountToWithdrwal) }}
                         </div>

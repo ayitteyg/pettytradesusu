@@ -36,7 +36,7 @@ export class MemberProfileComponent implements OnInit {
     private router: Router
   ) {
     this.profileForm = this.fb.group({
-      church: [''],
+      // church: [''],
       phone: ['', [Validators.pattern(/^[0-9]{10,15}$/)]],
       email: ['', [Validators.email]],
       full_name: ['', Validators.required],
